@@ -1,0 +1,25 @@
+/.ipynb_checkpoints
+/dist
+/instance
+*.ipynb
+/tui/node_modules
+/tui/.next
+/tui/out
+/tui/dist
+
+# Test files (exclude from production builds)
+tests/
+test_*.py
+*_test.py
+pytest.ini
+.pytest_cache/
+__pycache__/
+
+# IDE and local config
+.idea/
+.vscode/
+.env
+.git/
+.gitignore
+.ruff_cache/
+.sisyphus/

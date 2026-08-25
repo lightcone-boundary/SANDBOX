@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use SANDBOX Physics in your research, please cite it using the metadata below."
+title: "SANDBOX Physics"
+type: software
+version: "0.2.0"
+license: Apache-2.0
+authors:
+  - name: "光锥边界（南京）科技有限公司"
+repository-code: "https://github.com/lightcone-boundary/SANDBOX"
+url: "https://github.com/lightcone-boundary/SANDBOX"
+abstract: "A native OpenCode extension for physics research with PhysicsOcean knowledge-base retrieval, arXiv search, citation exploration, and a physics-focused agent."
+keywords:
+  - physics
+  - research software
+  - OpenCode
+  - arXiv
