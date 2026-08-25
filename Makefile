@@ -43,7 +43,7 @@ build:
 	npm --prefix physics-opencode run build
 
 publish:
-	npm --prefix physics-opencode publish --access public
+	npm publish ./physics-opencode --access public
 
 arxiv-sync:
 	$(PYTHON) scripts/arxiv_oai_sync.py

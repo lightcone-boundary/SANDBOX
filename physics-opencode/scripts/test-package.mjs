@@ -25,9 +25,25 @@ function assert(condition, message) {
   if (!condition) throw new Error(message)
 }
 
+const makefile = await readFile(resolve(repositoryRoot, "Makefile"), "utf8")
+const publishRecipe = /^publish:[^\n]*\n\t([^\n]+)$/m.exec(makefile)?.[1]
+assert(
+  publishRecipe === "npm publish ./physics-opencode --access public",
+  `the Makefile publish target does not pass the nested package to npm publish: ${publishRecipe}`,
+)
+
 runNpm(["run", "build"])
 
 const packageManifest = JSON.parse(await readFile(resolve(packageRoot, "package.json"), "utf8"))
+const packageLock = JSON.parse(await readFile(resolve(packageRoot, "package-lock.json"), "utf8"))
+const citation = await readFile(resolve(repositoryRoot, "CITATION.cff"), "utf8")
+const citationVersion = /^version:\s*"([^"]+)"$/m.exec(citation)?.[1]
+assert(packageLock.version === packageManifest.version, "package-lock.json version differs from package.json")
+assert(
+  packageLock.packages?.[""]?.version === packageManifest.version,
+  "package-lock.json root package version differs from package.json",
+)
+assert(citationVersion === packageManifest.version, "CITATION.cff version differs from package.json")
 assert(
   packageManifest.bin?.sandbox === "dist/cli.js",
   "the sandbox bin target is not in npm's canonical package-relative form",
